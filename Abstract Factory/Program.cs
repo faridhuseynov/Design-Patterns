@@ -7,85 +7,91 @@ using static Abstract_Factory.Animals;
 
 namespace Abstract_Factory
 {
-    public interface IContinent
+    public abstract class Continent
     {
-        Herbivore CreateFirstHerbivore();
-        Carnivore CreateFirstCarnivore();
-        Herbivore CreateSecondHerbivore();
-        Carnivore CreateSecondCarnivore();
+        public List<Herbivore> herbivores;
+        public List<Carnivore> carnivores;
+        public abstract Carnivore CreateCarnivore();
+        public abstract Herbivore CreateHerbivore();
     }
     // Africa is the Factory Class, which should has its own flora and fauna
-    public class Africa : IContinent
+    public class Africa : Continent
     {
+        //constructor to initialize list of carnivores and herbivores
+        public Africa()
+        {
+            herbivores = new List<Herbivore>();
+            carnivores = new List<Carnivore>();
+        }
         //method to create Lion in Africa
-        public Carnivore CreateFirstCarnivore()
+        public  override Carnivore CreateCarnivore()
         {
-            return new Lion();
+            var rnd = new Random();
+            var selection = rnd.Next(0, 2);
+            if (selection == 0)
+                return new Lion();
+            else
+                return new Wolf();
         }
 
-        //method to create Wolf in Africa
-        public Carnivore CreateSecondCarnivore()
+        //method to create Wildebeest or Bison in Africa
+        public override Herbivore CreateHerbivore()
         {
-            return new Wolf();
-        }
-
-        //method to create Wildebeest in Africa
-        public Herbivore CreateFirstHerbivore()
-        {
-            return new Wildebeest();
-        }
-
-        //method to create Bison in Africa
-        public Herbivore CreateSecondHerbivore()
-        {
-            return new Bison();
+            var rnd = new Random();
+            var selection = rnd.Next(0, 2);
+            if (selection == 0)
+                return new Wildebeest();
+            else
+                return new Bison();
         }
     }
 
     // North America is the Factory Class, which should has its own flora and fauna
-    public class NorthAmerica : IContinent
+    public class NorthAmerica : Continent
     {
-        //method to create Lion in Africa
-        public Carnivore CreateFirstCarnivore()
+        //constructor to initialize list of carnivores and herbivores
+        public NorthAmerica()
         {
-            return new Lion();
+            herbivores = new List<Herbivore>();
+            carnivores = new List<Carnivore>();
+        }
+        //method to create Lion or Wolf in North America
+        public override Carnivore CreateCarnivore()
+        {
+            var rnd = new Random();
+            var selection = rnd.Next(0, 2);
+            if (selection == 0)
+                return new Lion();
+            else
+                return new Wolf();
         }
 
-        //method to create Wolf in Africa
-        public Carnivore CreateSecondCarnivore()
+        //method to create Wildebeest in North America
+        public override Herbivore CreateHerbivore()
         {
-            return new Wolf();
-        }
-
-        //method to create Wildebeest in Africa
-        public Herbivore CreateFirstHerbivore()
-        {
-            return new Wildebeest();
-        }
-
-        //method to create Bison in Africa
-        public Herbivore CreateSecondHerbivore()
-        {
-            return new Bison();
+            var rnd = new Random();
+            var selection = rnd.Next(0, 2);
+            if (selection == 0)
+                return new Wildebeest();
+            else
+                return new Bison();
         }
     }
 
-    //clint class
+    //client class
     public class AnimalWorld
     {
         //Continent that the animal world will be set to work
-        public IContinent Continent { get; set; }
+        public Continent Continent { get; set; }
         //method to add herbivores based on the continent being selected
         public void AddHerbivore(List<Herbivore> herbivores)
         {
-            herbivores.Add(Continent.CreateFirstHerbivore());
-            herbivores.Add(Continent.CreateSecondHerbivore());
+            herbivores.Add(Continent.CreateHerbivore());
         }
         //method to add carnivore based on the continent being selected
         public void AddCarnivore(List<Carnivore> carnivores)
         {
-            carnivores.Add(Continent.CreateFirstCarnivore());
-            carnivores.Add(Continent.CreateSecondCarnivore());
+            carnivores.Add(Continent.CreateCarnivore());
         }
         //method for herbivores to eat
         public void MealsHerbivores(List<Herbivore> herbivores)
