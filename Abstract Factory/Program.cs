@@ -115,12 +115,43 @@ namespace Abstract_Factory
         }
     }
 
+    // Eurasia is the Factory Class, which should has its own flora and fauna
+    public class Eurasia : Continent
+    {
+        //constructor to initialize list of carnivores and herbivores
+        public Eurasia()
+        {
+            herbivores = new List<Herbivore>();
+            carnivores = new List<Carnivore>();
+        }
+        //method to create Lion or Wolf in Eurasia
+        public override Carnivore CreateCarnivore()
+        {
+            var rnd = new Random(DateTime.Now.Second);
+            var selection = rnd.Next(0, 100);
+            if (selection % 2 == 0)
+                return new Tiger();
+            else
+                return new Tiger();
+        }
+
+        //method to create Wildebeest in Eurasia
+        public override Herbivore CreateHerbivore()
+        {
+            var rnd = new Random(DateTime.Now.Second);
+            var selection = rnd.Next(0, 100);
+            if (selection % 2 == 0)
+                return new Elk();
+            else
+                return new Elk();
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
             AnimalWorld animalWorld = new AnimalWorld();
-            animalWorld.Continent = new Africa();
+            animalWorld.Continent = new Eurasia();
             animalWorld.AddCarnivore(animalWorld.Continent.carnivores);
             animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
             animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
@@ -132,8 +163,9 @@ namespace Abstract_Factory
             animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
             animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
             animalWorld.AddCarnivore(animalWorld.Continent.carnivores);
-
-
+            animalWorld.MealsHerbivores(animalWorld.Continent.herbivores);
+            animalWorld.NutritionCarnivores(animalWorld.Continent.carnivores, animalWorld.Continent.herbivores);
+            animalWorld.MealsHerbivores(animalWorld.Continent.herbivores);
         }
     }
 }

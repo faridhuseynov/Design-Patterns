@@ -30,6 +30,7 @@ namespace Abstract_Factory
             public override void EatGrass()
             {
                 Weight += 10;
+                Console.WriteLine(Weight);
             }
         }
         public class Bison : Herbivore
@@ -81,6 +82,50 @@ namespace Abstract_Factory
             {
                 Power = 100;
                 Console.WriteLine("Wolf created");
+            }
+            public override void EatHerbivore(Herbivore herbivore)
+            {
+                if (herbivore.Life != false)
+                {
+                    if (Power > herbivore.Weight)
+                    {
+                        Power += 10;
+                        herbivore.Weight -= 10;
+                        if (herbivore.Weight == 0)
+                        {
+                            herbivore.Life = false;
+                        }
+                    }
+                    else
+                    {
+                        if (Power != 0)
+                        {
+                            Power -= 10;
+                        }
+                    }
+                }
+            }
+        }
+        public class Elk : Herbivore
+        {
+            public Elk()
+            {
+                Weight = 50;
+                Life = true;
+                Console.WriteLine("Elk created");
+            }
+            public override void EatGrass()
+            {
+                Weight += 10;
+                Console.WriteLine(Weight);
+            }
+        }
+        public class Tiger : Carnivore
+        {
+            public Tiger()
+            {
+                Power = 500;
+                Console.WriteLine("Tiger created");
             }
             public override void EatHerbivore(Herbivore herbivore)
             {
