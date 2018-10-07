@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Abstract_Factory
 {
-    class Animals
+    public class Animals
     {
         public abstract class Herbivore
         {
@@ -21,10 +21,11 @@ namespace Abstract_Factory
         }
         public class Wildebeest : Herbivore
         {
-            Wildebeest()
+            public Wildebeest()
             {
                 Weight = 50;
                 Life = true;
+                Console.WriteLine("Wildebeest created");
             }
             public override void EatGrass()
             {
@@ -33,10 +34,11 @@ namespace Abstract_Factory
         }
         public class Bison : Herbivore
         {
-            Bison()
+            public Bison()
             {
                 Weight = 50;
                 Life = true;
+                Console.WriteLine("Bison created");
             }
             public override void EatGrass()
             {
@@ -45,9 +47,10 @@ namespace Abstract_Factory
         }
         public class Lion : Carnivore
         {
-            Lion()
+            public Lion()
             {
                 Power = 100;
+                Console.WriteLine("Lion created");
             }
             public override void EatHerbivore(Herbivore herbivore)
             {
@@ -74,9 +77,10 @@ namespace Abstract_Factory
         }
         public class Wolf : Carnivore
         {
-            Wolf()
+            public Wolf()
             {
                 Power = 100;
+                Console.WriteLine("Wolf created");
             }
             public override void EatHerbivore(Herbivore herbivore)
             {
