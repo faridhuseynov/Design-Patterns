@@ -26,9 +26,9 @@ namespace Abstract_Factory
         //method to create Lion in Africa
         public  override Carnivore CreateCarnivore()
         {
-            var rnd = new Random();
-            var selection = rnd.Next(0, 2);
-            if (selection == 0)
+            var rnd = new Random(DateTime.Now.Second);
+            var selection = rnd.Next(0, 100);
+            if (selection%2==0)
                 return new Lion();
             else
                 return new Wolf();
@@ -37,9 +37,9 @@ namespace Abstract_Factory
         //method to create Wildebeest or Bison in Africa
         public override Herbivore CreateHerbivore()
         {
-            var rnd = new Random();
-            var selection = rnd.Next(0, 2);
-            if (selection == 0)
+            var rnd = new Random(DateTime.Now.Second);
+            var selection = rnd.Next(0, 100);
+            if (selection % 2 == 0)
                 return new Wildebeest();
             else
                 return new Bison();
@@ -58,9 +58,9 @@ namespace Abstract_Factory
         //method to create Lion or Wolf in North America
         public override Carnivore CreateCarnivore()
         {
-            var rnd = new Random();
-            var selection = rnd.Next(0, 2);
-            if (selection == 0)
+            var rnd = new Random(DateTime.Now.Second);
+            var selection = rnd.Next(0, 100);
+            if (selection % 2 == 0)
                 return new Lion();
             else
                 return new Wolf();
@@ -69,9 +69,9 @@ namespace Abstract_Factory
         //method to create Wildebeest in North America
         public override Herbivore CreateHerbivore()
         {
-            var rnd = new Random();
-            var selection = rnd.Next(0, 2);
-            if (selection == 0)
+            var rnd = new Random(DateTime.Now.Second);
+            var selection = rnd.Next(0, 100);
+            if (selection % 2 == 0)
                 return new Wildebeest();
             else
                 return new Bison();
@@ -119,6 +119,20 @@ namespace Abstract_Factory
     {
         static void Main(string[] args)
         {
+            AnimalWorld animalWorld = new AnimalWorld();
+            animalWorld.Continent = new Africa();
+            animalWorld.AddCarnivore(animalWorld.Continent.carnivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddCarnivore(animalWorld.Continent.carnivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddHerbivore(animalWorld.Continent.herbivores);
+            animalWorld.AddCarnivore(animalWorld.Continent.carnivores);
+
 
         }
     }
